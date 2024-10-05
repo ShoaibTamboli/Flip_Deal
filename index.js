@@ -261,12 +261,14 @@ API Call: <http://localhost:3000/products/sort/price-high-to-low>
 Expected Output:
 JSON of sorted products on pricing (High to Low)
 */
-function sortedProducts(product1, product2) {
+function sortProductHightoLow(product1, product2) {
   return product2.price - product1.price;
 }
 
 app.get('/products/sort/price-high-to-low', (req, res) => {
   const productData = products.slice();
+  const sortedProducts = (product1, product2) =>
+    product2.price - product1.price;
   productData.sort(sortedProducts);
   res.json({ products: productData });
 });
@@ -282,12 +284,11 @@ API Call: <http://localhost:3000/products/sort/price-low-to-high>
 Expected Output: JSON of sorted products on pricing (Low to High)
 */
 
-function sortedProducts(product1, product2) {
-  return product1.price - product2.price;
-}
-
 app.get('/products/sort/price-low-to-high', (req, res) => {
   const productData = products.slice();
+  const sortedProducts = (product1, product2) =>
+    product1.price - product2.price;
+
   productData.sort(sortedProducts);
   res.json({ products: productData });
 });
