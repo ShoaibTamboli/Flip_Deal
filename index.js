@@ -240,12 +240,10 @@ API Call: <http://localhost:3000/products/sort/popularity>
 Expected Output: JSON of sorted products on popularity
 */
 
-function sortedProducts(product1, product2) {
-  return product2.rating - product1.rating;
-}
-
 app.get('/products/sort/popularity', (req, res) => {
   const productData = products.slice();
+  const sortedProducts = (product1, product2) =>
+    product2.rating - product1.rating;
   productData.sort(sortedProducts);
   res.json({ products: productData });
 });
@@ -261,9 +259,6 @@ API Call: <http://localhost:3000/products/sort/price-high-to-low>
 Expected Output:
 JSON of sorted products on pricing (High to Low)
 */
-function sortProductHightoLow(product1, product2) {
-  return product2.price - product1.price;
-}
 
 app.get('/products/sort/price-high-to-low', (req, res) => {
   const productData = products.slice();
